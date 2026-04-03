@@ -48,12 +48,8 @@ module.exports = function defineOidcHook(sails) {
 
         const httpDefaults = {};
 
-        if (sails.config.custom.outgoingProxy) {
-          const agent = new HttpsProxyAgent(sails.config.custom.outgoingProxy);
-          httpDefaults.agent = {
-            https: agent,
-            http: agent,
-          };
+        if (sails.config.custom.oidcProxy) {
+          httpDefaults.agent = new HttpsProxyAgent(sails.config.custom.oidcProxy);
         }
 
         if (sails.config.custom.oidcTimeout !== null) {
